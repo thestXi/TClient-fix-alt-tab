@@ -1,27 +1,31 @@
-# T-client.fix
+# TClient Alt-Tab Fix
 
-Неофициальная Windows x64-сборка TClient/DDNet для игроков, которые используют растянутое разрешение 4:3 на мониторе 16:9 и получают долгий чёрный экран при Alt+Tab.
+An unofficial Windows x64 build of TClient/DDNet for players who use a stretched 4:3 resolution on a 16:9 display and experience a long black screen when switching applications with Alt+Tab.
 
-## Что исправлено
+## What this build fixes
 
-- Режим `Fullscreen` больше не переключает системное разрешение Windows.
-- Выбранное разрешение 4:3 сохраняется как логическое соотношение сторон и растягивается на весь экран.
-- Физический размер экрана отдельно используется для viewport, мыши, DPI и скриншотов.
-- Alt+Tab не требует повторной синхронизации монитора с другим видеорежимом.
+- Fullscreen mode no longer changes the Windows desktop resolution.
+- The selected 4:3 resolution is preserved as the logical aspect ratio and stretched to fill the display.
+- The physical display size is handled separately for the viewport, mouse coordinates, DPI scaling, and screenshots.
+- Alt+Tab no longer requires the monitor to resynchronize with a different display mode.
 
-## Запуск
+## Installation and use
 
-1. Скачайте и распакуйте всю папку сборки.
-2. Запустите `DDNet.exe`.
-3. Откройте настройки графики, выберите `Fullscreen` и разрешение 4:3, например `1280x960` или `1440x1080`.
-4. Не удаляйте папку `data` и DLL-файлы рядом с программой.
+1. Download and extract the complete build.
+2. Run `DDNet.exe`.
+3. Open the graphics settings, select `Fullscreen`, and choose a 4:3 resolution such as `1280x960` or `1440x1080`.
+4. Keep the `data` directory and all DLL files next to the executable.
 
-## Для кого эта сборка
+## Who this build is for
 
-Сборка предназначена для Windows-игроков с монитором 16:9 или 16:10, которые играют с растянутым 4:3 и сталкиваются с чёрным экраном, миганием монитора или задержкой при Alt+Tab. Если вы используете родное разрешение монитора и проблемы нет, эта модификация вам не требуется.
+This build is intended for Windows players using a 16:9 or 16:10 monitor with a stretched 4:3 resolution who experience a black screen, monitor flicker, or a delay when using Alt+Tab. If you use your monitor's native resolution and do not have this problem, you do not need this modification.
 
-Игра выводится в физическом разрешении рабочего стола, поэтому нагрузка на GPU может быть выше, чем при настоящем эксклюзивном разрешении `1280x960`.
+The game renders at the physical desktop resolution, so GPU usage may be higher than with a true exclusive `1280x960` display mode.
 
-## Происхождение и лицензия
+## Technical overview
 
-Это изменённая неофициальная сборка на основе TClient/DDNet; она не должна восприниматься как оригинальный официальный клиент. Авторские права и условия распространения сохранены в `license.txt`, дополнительные уведомления библиотек находятся в папке `licenses`.
+On Windows, fullscreen mode 1 uses a desktop-sized borderless window instead of changing the system display mode. The configured 4:3 resolution is retained as a virtual aspect ratio while the real drawable size remains equal to the desktop resolution. This keeps rendering, clipping, mouse input, DPI scaling, and screenshots consistent while eliminating the display-mode transition during Alt+Tab.
+
+## Origin and license
+
+This is an unofficial modified build based on TClient/DDNet and is not an official release. Original copyright notices and distribution terms are preserved in `license.txt`. Notices for the bundled third-party libraries are included in the `licenses` directory.
